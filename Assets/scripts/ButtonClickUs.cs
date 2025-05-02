@@ -1,0 +1,149 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class ButtonClickUs : MonoBehaviour
+{
+    public GameObject imagePrefab;
+    public Transform imagesPanel;
+    public List<RectTransform> imagePositions;
+    private List<GameObject> addedImages = new List<GameObject>();
+    private List<string> sequence = new List<string>();
+    public PrintHierogliph hieroglihs;
+
+    public GameObject truePanel;
+    public GameObject falsePanel;
+    public TextMeshProUGUI truePanelText;
+    public TextMeshProUGUI falsePanelText;
+
+    private int currentImageIndex = 0;
+    public int baseReward = 10;
+    public int penalty = 5;
+    public int currentReward;
+    public int currentStreak = 0;
+    public int points = 0;
+    public WebRequest webRequest;
+    public FirstUser fistUser;
+
+    private void Start()
+    {
+        currentReward = baseReward;
+    }
+
+    public void OnButtonClicked(Sprite buttonSprite, string name)
+    {
+        if (currentImageIndex >= imagePositions.Count)
+        {
+            Debug.LogWarning("Все места заполнены!");
+            return;
+        }
+        else if (currentImageIndex <= 5)
+        {
+            GameObject newImage = Instantiate(imagePrefab, imagesPanel);
+            newImage.name = name;
+            newImage.GetComponent<Image>().sprite = buttonSprite;
+            sequence.Add(name);
+            addedImages.Add(newImage);
+
+            newImage.GetComponent<RectTransform>().anchoredPosition =
+                imagePositions[currentImageIndex].anchoredPosition;
+            currentImageIndex++;
+            webRequest.SendNameParth(sequence);
+        }
+    }
+    //кнопка
+    public void ClearAllImages()
+    {
+        webRequest.Validate(sequence);
+    }
+
+    public void TrueValid()
+    {
+        currentStreak++;
+        currentReward = baseReward * currentStreak;
+        points += currentReward;
+
+        truePanelText.text = $"Верно! +{currentReward} очков!";
+        truePanel.SetActive(true);
+
+        fistUser.UpdateBalance(currentReward);
+
+        ClearImagesAndReset();
+        StartCoroutine(DeactivatePanelAfterDelay(truePanel, 2));
+    }
+
+    public void FalseValid()
+    {
+        currentStreak = 0;
+        currentReward = Mathf.Max(currentReward - penalty, 0);
+
+        if (currentReward > 0)
+        {
+            falsePanelText.text = $"Не верно -{penalty} очков";
+        }
+        else
+        {
+            falsePanelText.text = "Ты проиграл";
+            ResetGame();
+        }
+
+        falsePanel.SetActive(true);
+        StartCoroutine(DeactivatePanelAfterDelay(falsePanel, 2));
+    }
+
+    private void ClearImagesAndReset()
+    {
+        foreach (GameObject img in addedImages)
+        {
+            Destroy(img);
+        }
+        addedImages.Clear();
+        sequence.Clear();
+        currentImageIndex = 0;
+    }
+
+    public void ResetGame()
+    {
+        ClearImagesAndReset();
+        currentReward = baseReward;
+        currentStreak = 0;
+        points = 0;
+
+        webRequest.GetHieroglyphFi();
+        webRequest.GetSymbolsListAppend();
+    }
+
+    public void RemoveLastImage()
+    {
+        if (addedImages.Count == 1 && currentImageIndex == 1)
+        {
+            int lastIndex = addedImages.Count - 1;
+            Destroy(addedImages[lastIndex]);
+            addedImages.RemoveAt(lastIndex);
+            sequence.RemoveAt(lastIndex);
+            //-???все если последний первый
+            webRequest.GetSymbolsListAppend();
+            //+
+            currentImageIndex -= 1;
+        }
+        if (addedImages.Count > 1 && currentImageIndex > 1)
+        {
+            int lastIndex = addedImages.Count - 1;
+            Destroy(addedImages[lastIndex]);
+            addedImages.RemoveAt(lastIndex);
+            sequence.RemoveAt(lastIndex);
+            //-???
+            webRequest.SendNameParth(sequence);
+            //+
+            currentImageIndex -= 1;
+        }
+    }
+
+    private IEnumerator DeactivatePanelAfterDelay(GameObject panel, int delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        panel.SetActive(false);
+    }
+}

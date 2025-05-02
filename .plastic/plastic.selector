@@ -1,0 +1,4 @@
+repository "Simple China@Fury_Dev@cloud"
+  path "/"
+    br "/main"
+    co "/main"
