@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 23a858572c51b154cb3d8a928795396d
+guid: 6f3f7a8c0706dfd4e82ba480d15bdc2c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 248, y: 282, z: 61, w: 281}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -110,12 +110,12 @@ TextureImporter:
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 50
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -123,34 +123,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: China_0
+      name: "\u041A\u0440\u0435\u0441\u0442_0"
       rect:
         serializedVersion: 2
-        x: 250
-        y: 0
-        width: 48
-        height: 41
+        x: 249
+        y: 282
+        width: 34
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 916f79e905fe14849a15db1c7de8af5e
-      internalID: -1714334065
+      spriteID: 06a24a91e5631d24798bbe69c3c57dbf
+      internalID: -731279935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: China_1
+      name: "\u041A\u0440\u0435\u0441\u0442_1"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 298
-        height: 41
+        x: 228
+        y: 307
+        width: 5
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 591c8d31144499b4db916f541543a0f1
-      internalID: -1621489384
+      spriteID: 15645d63e96131a45afdaf9ec925e5ef
+      internalID: 1588195206
       vertices: []
       indices: 
       edges: []
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      China_0: -1714334065
-      China_1: -1621489384
+      "\u041A\u0440\u0435\u0441\u0442_0": -731279935
+      "\u041A\u0440\u0435\u0441\u0442_1": 1588195206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

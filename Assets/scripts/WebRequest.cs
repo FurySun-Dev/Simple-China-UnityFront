@@ -53,7 +53,7 @@ public class WebRequest : MonoBehaviour
     }
     private IEnumerator GetHieroglyph()
     {
-        UnityWebRequest request = UnityWebRequest.Get("https://backendforchina.onrender.com/hieroglyphs/random_hieroglyph");
+        UnityWebRequest request = UnityWebRequest.Get("http://127.0.0.1:8000/hieroglyphs/random_hieroglyph");
 
         yield return request.SendWebRequest();
         if (request.result == UnityWebRequest.Result.Success)
@@ -69,7 +69,7 @@ public class WebRequest : MonoBehaviour
     }
     private IEnumerator GetSymbolsList()
     {
-        UnityWebRequest request = UnityWebRequest.Get("https://backendforchina.onrender.com/graphems/all_graphems");
+        UnityWebRequest request = UnityWebRequest.Get("http://127.0.0.1:8000/graphems/all_graphems");
 
         yield return request.SendWebRequest();
 
@@ -114,7 +114,7 @@ public class WebRequest : MonoBehaviour
         //To json, mb replay on json library
         string jsonData = JsonUtility.ToJson(new StringListWrapper { graphemes = name });
 
-        UnityWebRequest request = new UnityWebRequest("https://backendforchina.onrender.com/hieroglyphs/get_available_graphemes", "POST");
+        UnityWebRequest request = new UnityWebRequest("http://127.0.0.1:8000/hieroglyphs/get_available_graphemes", "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
 
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
@@ -159,7 +159,7 @@ public class WebRequest : MonoBehaviour
     public IEnumerator ValidateSequence(List<string> sequence, string hieroglyph)
     {
         string jsonData = JsonUtility.ToJson(new StringListWrapper { graphemes = sequence });
-        string url = "https://backendforchina.onrender.com/hieroglyphs/confirm?hieroglyph=" + hieroglyph;
+        string url = "http://127.0.0.1:8000/hieroglyphs/confirm?hieroglyph=" + hieroglyph;
         url = url.Replace("\"", "");
 
         UnityWebRequest request = new UnityWebRequest(url, "POST");

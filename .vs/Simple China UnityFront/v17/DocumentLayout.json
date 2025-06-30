@@ -1,0 +1,173 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\GameUnt\\Simple China UnityFront\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|D:\\GameUnt\\Simple China UnityFront\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|D:\\GameUnt\\Simple China UnityFront\\assets\\scripts\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|D:\\GameUnt\\Simple China UnityFront\\assets\\scripts\\translate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\translate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|D:\\GameUnt\\Simple China UnityFront\\assets\\scripts\\buttonclickus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\buttonclickus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|d:\\gameunt\\simple china unityfront\\assets\\scripts\\firstuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\firstuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|D:\\GameUnt\\Simple China UnityFront\\assets\\scripts\\printhierogliph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\printhierogliph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|D:\\GameUnt\\Simple China UnityFront\\assets\\scripts\\scrollmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scrollmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|D:\\GameUnt\\Simple China UnityFront\\assets\\scripts\\timegame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEBE05C1-3C82-F679-DB97-96D3A6862407}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\timegame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Translate.cs",
+              "DocumentMoniker": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\Translate.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Translate.cs",
+              "ToolTip": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\Translate.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Translate.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T16:50:47.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TimeGame.cs",
+              "DocumentMoniker": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\TimeGame.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\TimeGame.cs",
+              "ToolTip": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\TimeGame.cs",
+              "RelativeToolTip": "Assets\\Scripts\\TimeGame.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T09:28:11.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ScrollManager.cs",
+              "DocumentMoniker": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\ScrollManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ScrollManager.cs",
+              "ToolTip": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\ScrollManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ScrollManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T08:44:06.945Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ButtonClickUs.cs",
+              "DocumentMoniker": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\ButtonClickUs.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ButtonClickUs.cs",
+              "ToolTip": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\ButtonClickUs.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ButtonClickUs.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T08:43:34.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PrintHierogliph.cs",
+              "DocumentMoniker": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\PrintHierogliph.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PrintHierogliph.cs",
+              "ToolTip": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\PrintHierogliph.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PrintHierogliph.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T08:29:27.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T15:26:15.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Settings.cs",
+              "DocumentMoniker": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\Settings.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Settings.cs",
+              "ToolTip": "D:\\GameUnt\\Simple China UnityFront\\Assets\\Scripts\\Settings.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Settings.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACAAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T09:11:33.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FirstUser.cs",
+              "DocumentMoniker": "D:\\GameUnt\\Simple China UnityFront\\Assets\\scripts\\FirstUser.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\FirstUser.cs",
+              "ToolTip": "D:\\GameUnt\\Simple China UnityFront\\Assets\\scripts\\FirstUser.cs",
+              "RelativeToolTip": "Assets\\scripts\\FirstUser.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAMBcwBkAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T09:10:37.371Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

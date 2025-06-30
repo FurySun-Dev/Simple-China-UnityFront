@@ -6,20 +6,17 @@ public class GameManager : MonoBehaviour
     public GameObject loadingScreen;
     public GameObject mainGame;
 
-    // Флаг, будет сохраняться между перезапусками сцен в рамках одного запуска приложения
     private static bool logoAlreadyShown = false;
 
     private void Start()
     {
         if (!logoAlreadyShown)
         {
-            // При первом запуске показываем экран с логотипом
             logoAlreadyShown = true;
             StartCoroutine(StartGameWithDelay(3));
         }
         else
         {
-            // При последующих загрузках сразу показываем основную игру
             loadingScreen.SetActive(false);
             mainGame.SetActive(true);
         }

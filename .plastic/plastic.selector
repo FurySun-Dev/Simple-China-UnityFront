@@ -1,4 +1,4 @@
-repository "Simple China@Fury_Dev@cloud"
+repository "Cloud Repositories/Simple China@10171066232264@cloud"
   path "/"
     br "/main"
     co "/main"

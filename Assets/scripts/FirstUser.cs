@@ -1,124 +1,38 @@
+using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+using TMPro;
+
 public class FirstUser : MonoBehaviour
 {
-    /// <summary>
-    /// Тут регистрация временная, до момента пока на сервере не сделают более вменяемую ( рабочую регу )
-    /// На деле большую часть нужно будет изменить
-    /// Нужно будет сохранять только UID и его отправлять на сервер уже получая всё остальное
-    /// </summary>
-    private static string userId;
-    private static string username = "basedUser";
-    private int balance;
-    private const string cacheKey = "User1";
-    public string newUsername = "Default";
-    public int updateskip = -50;
     public TextMeshProUGUI balanceText;
-    public ButtonClickUs ButtonClick;
     public Button skipButton;
+    public ButtonClickUs ButtonClick;
+
+    private int balance;
+    public string uuid;
+    public string timeID;
+    private const string baseUrl = "http://127.0.0.1:8000";
+    private const int skipCost = 50;
+
     private void Start()
     {
-        if (PlayerPrefs.HasKey(cacheKey))
+        
+        if (PlayerPrefs.HasKey("uuid"))
         {
-            LoadUserData();
+            uuid = PlayerPrefs.GetString("uuid");
+            StartCoroutine(GetBalance());
         }
         else
         {
-            // Генерация рандомного имени пользователя ( временно )
-            newUsername = GenerateRandomString(8);
-            Debug.Log($"Сгенерированное имя пользователя: {newUsername}");
-            // Генерация рандомного пароля ( временно )
-            string hashedPassword = GenerateRandomString(6);
-            Debug.Log($"Сгенерированный пароль: {hashedPassword}");
-            StartCoroutine(RegisterUser(hashedPassword));
-            balanceText.text = balance.ToString();
+            timeID = GenerateRandomString(5);
+            StartCoroutine(InitialLogin());
+            
         }
-        UpdateSkipButtonState();
-    }
-    private void Update()
-    {
-        UpdateSkipButtonState();
-    }
-    //кнопка
-    public void Skipgame()
-    {
-        if (balance >= 50)
-        {
-            UpdateBalance(updateskip);
-            ButtonClick.ResetGame();
-        }
-        else
-        {
-            Debug.LogWarning("Недостаточно очков для пропуска!");
-        }
-    }
-    private void UpdateSkipButtonState()
-    {
-        if (skipButton != null)
-        {
-            skipButton.interactable = balance >= 50;
-        }
-    }
-    private void LoadUserData()
-    {
-        string cachedData = PlayerPrefs.GetString(cacheKey);
-        UserData data = JsonUtility.FromJson<UserData>(cachedData);
-        userId = data.id_user;
-        username = data.username;
-        balance = data.balance;
-        balanceText.text = balance.ToString();
 
     }
-    private void SaveUserData()
-    {
-        UserData data = new UserData
-        {
-            id_user = userId,
-            username = username,
-            balance = balance
-        };
-
-        string jsonData = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString(cacheKey, jsonData);
-        PlayerPrefs.Save();
-    }
-
-    public void UpdateBalance(int amount)
-    {
-        balance += amount;
-        balanceText.text = balance.ToString();
-        Debug.Log($"Баланс обновлен: {balance}");
-        SaveUserData();
-    }
-    private IEnumerator RegisterUser(string hashedPassword)
-    {
-        balance = 100;
-        string url = "https://backendforchina.onrender.com/users/testAdd/?username=" + newUsername + "&hashed_password=" + hashedPassword + $"&balance={balance}";
-        Debug.Log($"{url}");
-        UnityWebRequest request = UnityWebRequest.PostWwwForm(url, "");
-
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            string response = request.downloadHandler.text;
-            UserData data = JsonUtility.FromJson<UserData>(response);
-            userId = data.id_user;
-            username = data.username;
-            balance = data.balance;
-
-            PlayerPrefs.SetString(cacheKey, JsonUtility.ToJson(data));
-            PlayerPrefs.Save();
-        }
-        else
-        {
-            Debug.LogError($"Код: {request.error}");
-        }
-    }
-    //временно
     private string GenerateRandomString(int length)
     {
         const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -132,12 +46,136 @@ public class FirstUser : MonoBehaviour
 
         return new string(stringChars);
     }
-
-    [System.Serializable]
-    public class UserData
+    private void Update()
     {
-        public string id_user;
-        public string username;
+        UpdateSkipButtonState();
+    }
+
+    /// <summary>
+    /// Attempt to skip game if enough balance
+    /// </summary>
+    public void Skipgame()
+    {
+        if (balance >= skipCost)
+        {
+            UpdateBalance(-skipCost);
+            ButtonClick.ResetGame();
+        }
+        else
+        {
+            Debug.LogWarning("Недостаточно очков для пропуска!");
+        }
+    }
+
+    private void UpdateSkipButtonState()
+    {
+        if (skipButton != null)
+            skipButton.interactable = balance >= skipCost;
+    }
+
+    #region Server Communication
+    [System.Serializable]
+    public class InitialLoginResponse
+    {
+        public string uuid;
+    }
+    private IEnumerator InitialLogin()
+    {
+        // Собираем URL с query-параметром device_id
+        string url = $"{baseUrl}/users/initial_login?device_id={timeID}";
+
+        // Создаём POST-запрос без тела (payload = null или empty)
+        using (UnityWebRequest www = UnityWebRequest.PostWwwForm(url, string.Empty))
+        {
+            // Указываем, что ждём JSON
+            www.SetRequestHeader("Accept", "application/json");
+
+            // Отправляем
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                // Парсим JSON-ответ
+                string json = www.downloadHandler.text;
+                InitialLoginResponse resp = JsonUtility.FromJson<InitialLoginResponse>(json);
+
+                // Сохраняем в PlayerPrefs и локальную переменную
+                uuid = resp.uuid;
+                PlayerPrefs.SetString("uuid", uuid);
+                PlayerPrefs.Save();
+
+                Debug.Log($"Initial login successful, uuid = {uuid}");
+
+                // Стартуем получение баланса
+                StartCoroutine(GetBalance());
+            }
+            else
+            {
+                Debug.LogError($"InitialLogin error: {www.error}");
+            }
+        }
+    }
+    [Serializable]
+    public class BalanceResponse
+    {
         public int balance;
     }
+    private IEnumerator GetBalance()
+    {
+        string url = $"{baseUrl}/users/get_balance?uuid={uuid}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                // 1. Получаем текст
+                string json = www.downloadHandler.text;
+                Debug.Log("Raw balance response: " + json);
+
+                // 2. Парсим JSON
+                BalanceResponse resp = JsonUtility.FromJson<BalanceResponse>(json);
+                balance = resp.balance;
+
+                // 3. Сохраняем и отображаем
+                PlayerPrefs.SetInt("balance", balance);
+                balanceText.text = balance.ToString();
+                Debug.Log("Balance received: " + balance);
+            }
+            else
+            {
+                Debug.LogError("GetBalance error: " + www.error);
+            }
+        }
+    }
+
+    public void UpdateBalance(int amount)
+    {
+        balance += amount;
+        PlayerPrefs.SetInt("balance", balance);
+        balanceText.text = balance.ToString();
+        Debug.Log($"Баланс обновлен: {balance}");
+        StartCoroutine(UpdateBalanceOnServer());
+    }
+
+    private IEnumerator UpdateBalanceOnServer()
+    {
+        string url = $"{baseUrl}/users/update_balance?uuid={uuid}&new_balance={balance}";
+        using (UnityWebRequest www = UnityWebRequest.Post(url, new WWWForm()))
+        {
+            www.SetRequestHeader("Accept", "application/json");
+            yield return www.SendWebRequest();
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("Balance updated on server");
+            }
+            else
+            {
+                Debug.LogError($"UpdateBalance error {www.responseCode}: {www.error}\n{www.downloadHandler.text}");
+            }
+        }
+    }
+
+    #endregion
+
 }

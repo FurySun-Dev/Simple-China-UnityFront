@@ -110,12 +110,12 @@ TextureImporter:
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 50
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -126,19 +126,19 @@ TextureImporter:
       name: China_0
       rect:
         serializedVersion: 2
-        x: 250
+        x: 0
         y: 0
-        width: 48
+        width: 298
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 916f79e905fe14849a15db1c7de8af5e
-      internalID: -1714334065
+      spriteID: 14730cd14c6b7b44195adbe28f89650d
+      internalID: -551239956
       vertices: []
       indices: 
       edges: []
@@ -147,19 +147,19 @@ TextureImporter:
       name: China_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 249
         y: 0
-        width: 298
+        width: 49
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 591c8d31144499b4db916f541543a0f1
-      internalID: -1621489384
+      spriteID: 9a043651d28d11a4cbb687dfc485a5c4
+      internalID: -747454888
       vertices: []
       indices: 
       edges: []
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      China_0: -1714334065
-      China_1: -1621489384
+      China_0: -551239956
+      China_1: -747454888
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

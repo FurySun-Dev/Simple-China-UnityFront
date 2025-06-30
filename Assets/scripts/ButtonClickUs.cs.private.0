@@ -23,9 +23,8 @@ public class ButtonClickUs : MonoBehaviour
     public int penalty = 5;
     public int currentReward;
     public int currentStreak = 0;
-    public int points = 0;
     public WebRequest webRequest;
-    public FirstUser fistUser;
+    public FirstUser firstUser;
 
     private void Start()
     {
@@ -36,7 +35,7 @@ public class ButtonClickUs : MonoBehaviour
     {
         if (currentImageIndex >= imagePositions.Count)
         {
-            Debug.LogWarning("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!");
+            Debug.LogWarning("Все места заполнены!");
             return;
         }
         else if (currentImageIndex <= 5)
@@ -53,7 +52,7 @@ public class ButtonClickUs : MonoBehaviour
             webRequest.SendNameParth(sequence);
         }
     }
-    //пїЅпїЅпїЅпїЅпїЅпїЅ
+    //кнопка
     public void ClearAllImages()
     {
         webRequest.Validate(sequence);
@@ -63,12 +62,11 @@ public class ButtonClickUs : MonoBehaviour
     {
         currentStreak++;
         currentReward = baseReward * currentStreak;
-        points += currentReward;
 
-        truePanelText.text = $"пїЅпїЅпїЅпїЅпїЅ! +{currentReward} пїЅпїЅпїЅпїЅпїЅ!";
+        truePanelText.text = $"Верно! +{currentReward} очков!";
         truePanel.SetActive(true);
 
-        fistUser.UpdateBalance(currentReward);
+        firstUser.UpdateBalance(currentReward);
 
         ClearImagesAndReset();
         StartCoroutine(DeactivatePanelAfterDelay(truePanel, 2));
@@ -81,11 +79,12 @@ public class ButtonClickUs : MonoBehaviour
 
         if (currentReward > 0)
         {
-            falsePanelText.text = $"пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ -{penalty} пїЅпїЅпїЅпїЅпїЅ";
+            falsePanelText.text = $"Не верно -{penalty} очков";
+            firstUser.UpdateBalance(-penalty);
         }
         else
         {
-            falsePanelText.text = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+            falsePanelText.text = "Ты проиграл";
             ResetGame();
         }
 
@@ -109,7 +108,6 @@ public class ButtonClickUs : MonoBehaviour
         ClearImagesAndReset();
         currentReward = baseReward;
         currentStreak = 0;
-        points = 0;
 
         webRequest.GetHieroglyphFi();
         webRequest.GetSymbolsListAppend();
@@ -123,9 +121,7 @@ public class ButtonClickUs : MonoBehaviour
             Destroy(addedImages[lastIndex]);
             addedImages.RemoveAt(lastIndex);
             sequence.RemoveAt(lastIndex);
-            //-???пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             webRequest.GetSymbolsListAppend();
-            //+
             currentImageIndex -= 1;
         }
         if (addedImages.Count > 1 && currentImageIndex > 1)
@@ -134,9 +130,7 @@ public class ButtonClickUs : MonoBehaviour
             Destroy(addedImages[lastIndex]);
             addedImages.RemoveAt(lastIndex);
             sequence.RemoveAt(lastIndex);
-            //-???
             webRequest.SendNameParth(sequence);
-            //+
             currentImageIndex -= 1;
         }
     }
