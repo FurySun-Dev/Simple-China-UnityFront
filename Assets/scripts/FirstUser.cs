@@ -51,9 +51,6 @@ public class FirstUser : MonoBehaviour
         UpdateSkipButtonState();
     }
 
-    /// <summary>
-    /// Attempt to skip game if enough balance
-    /// </summary>
     public void Skipgame()
     {
         if (balance >= skipCost)
@@ -73,7 +70,6 @@ public class FirstUser : MonoBehaviour
             skipButton.interactable = balance >= skipCost;
     }
 
-    #region Server Communication
     [System.Serializable]
     public class InitialLoginResponse
     {
@@ -81,32 +77,25 @@ public class FirstUser : MonoBehaviour
     }
     private IEnumerator InitialLogin()
     {
-        // Собираем URL с query-параметром device_id
         string url = $"{baseUrl}/users/initial_login?device_id={timeID}";
 
-        // Создаём POST-запрос без тела (payload = null или empty)
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(url, string.Empty))
         {
-            // Указываем, что ждём JSON
             www.SetRequestHeader("Accept", "application/json");
 
-            // Отправляем
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                // Парсим JSON-ответ
                 string json = www.downloadHandler.text;
                 InitialLoginResponse resp = JsonUtility.FromJson<InitialLoginResponse>(json);
 
-                // Сохраняем в PlayerPrefs и локальную переменную
                 uuid = resp.uuid;
                 PlayerPrefs.SetString("uuid", uuid);
                 PlayerPrefs.Save();
 
                 Debug.Log($"Initial login successful, uuid = {uuid}");
 
-                // Стартуем получение баланса
                 StartCoroutine(GetBalance());
             }
             else
@@ -129,22 +118,19 @@ public class FirstUser : MonoBehaviour
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                // 1. Получаем текст
                 string json = www.downloadHandler.text;
-                Debug.Log("Raw balance response: " + json);
+                Debug.Log("Баланс: " + json);
 
-                // 2. Парсим JSON
                 BalanceResponse resp = JsonUtility.FromJson<BalanceResponse>(json);
                 balance = resp.balance;
 
-                // 3. Сохраняем и отображаем
                 PlayerPrefs.SetInt("balance", balance);
                 balanceText.text = balance.ToString();
-                Debug.Log("Balance received: " + balance);
+                Debug.Log("Баланс получен: " + balance);
             }
             else
             {
-                Debug.LogError("GetBalance error: " + www.error);
+                Debug.LogError("Ошибка получения баланса: " + www.error);
             }
         }
     }
@@ -167,15 +153,12 @@ public class FirstUser : MonoBehaviour
             yield return www.SendWebRequest();
             if (www.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Balance updated on server");
+                Debug.Log("Баланс обновлён");
             }
             else
             {
-                Debug.LogError($"UpdateBalance error {www.responseCode}: {www.error}\n{www.downloadHandler.text}");
+                Debug.LogError($"Ошибка обновления баланса {www.responseCode}: {www.error}\n{www.downloadHandler.text}");
             }
         }
     }
-
-    #endregion
-
 }

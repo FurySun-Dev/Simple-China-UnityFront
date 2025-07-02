@@ -36,7 +36,7 @@ public class ButtonClickUs : MonoBehaviour
     {
         if (currentImageIndex >= imagePositions.Count)
         {
-            Debug.LogWarning("��� ����� ���������!");
+            Debug.LogWarning("Последовательность!");
             return;
         }
         else if (currentImageIndex <= 5)
@@ -53,7 +53,6 @@ public class ButtonClickUs : MonoBehaviour
             webRequest.SendNameParth(sequence);
         }
     }
-    //������
     public void ClearAllImages()
     {
         webRequest.Validate(sequence);
@@ -65,7 +64,7 @@ public class ButtonClickUs : MonoBehaviour
         currentReward = baseReward * currentStreak;
         points += currentReward;
 
-        truePanelText.text = $"�����! +{currentReward} �����!";
+        truePanelText.text = $"Верно! +{currentReward}!";
         truePanel.SetActive(true);
 
         fistUser.UpdateBalance(currentReward);
@@ -81,11 +80,11 @@ public class ButtonClickUs : MonoBehaviour
 
         if (currentReward > 0)
         {
-            falsePanelText.text = $"�� ����� -{penalty} �����";
+            falsePanelText.text = $"Не верно -{penalty}";
         }
         else
         {
-            falsePanelText.text = "�� ��������";
+            falsePanelText.text = "Вы проиграли";
             ResetGame();
         }
 
@@ -123,9 +122,7 @@ public class ButtonClickUs : MonoBehaviour
             Destroy(addedImages[lastIndex]);
             addedImages.RemoveAt(lastIndex);
             sequence.RemoveAt(lastIndex);
-            //-???��� ���� ��������� ������
             webRequest.GetSymbolsListAppend();
-            //+
             currentImageIndex -= 1;
         }
         if (addedImages.Count > 1 && currentImageIndex > 1)
@@ -134,7 +131,7 @@ public class ButtonClickUs : MonoBehaviour
             Destroy(addedImages[lastIndex]);
             addedImages.RemoveAt(lastIndex);
             sequence.RemoveAt(lastIndex);
-            //-???
+            //-
             webRequest.SendNameParth(sequence);
             //+
             currentImageIndex -= 1;

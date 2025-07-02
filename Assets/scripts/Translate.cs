@@ -18,21 +18,18 @@ public class Translate : MonoBehaviour
     [Header("Settings")]
     private const string baseUrl = "http://127.0.0.1:8000";
 
-    // Обёртка для запроса find_hieroglyph
     [Serializable]
     private class StringListWrapper
     {
         public List<string> graphemes;
     }
 
-    // Модель запроса translate
     [Serializable]
     private class TranslateRequest
     {
         public string text;
     }
 
-    // Одиночный токен ответа translate
     [Serializable]
     private class TranslateToken
     {
@@ -41,7 +38,6 @@ public class Translate : MonoBehaviour
         public List<string> meanings;
     }
 
-    // Модель массива токенов
     [Serializable]
     private class TranslateResponseArray
     {
@@ -63,7 +59,6 @@ public class Translate : MonoBehaviour
 
     private IEnumerator TranslateCoroutine(List<string> sequence)
     {
-        // 1) Запрос find_hieroglyph
         var wrapper = new StringListWrapper { graphemes = sequence };
         string json1 = JsonUtility.ToJson(wrapper);
         byte[] body1 = Encoding.UTF8.GetBytes(json1);
@@ -82,8 +77,6 @@ public class Translate : MonoBehaviour
                 Debug.LogError($"find_hieroglyph error {req1.responseCode}: {req1.error}");
                 yield break;
             }
-
-            // Чистим ответ
             string rawHex = req1.downloadHandler.text.Trim();
             Debug.Log("find_hieroglyph returned: " + rawHex);
 
@@ -93,10 +86,8 @@ public class Translate : MonoBehaviour
                 yield break;
             }
 
-            // Показываем иероглиф
             hierogliph.SetUnicode(rawHex);
 
-            // 2) Запрос translate
             var reqBody2 = new TranslateRequest { text = rawHex };
             string json2 = JsonUtility.ToJson(reqBody2);
             byte[] body2 = Encoding.UTF8.GetBytes(json2);
@@ -119,7 +110,6 @@ public class Translate : MonoBehaviour
                 string respJson = req2.downloadHandler.text;
                 List<TranslateToken> tokens = new List<TranslateToken>();
                 textTranslate.text = "";
-                // Парсим
                 if (respJson.Contains("\"tokens\""))
                 {
                     var arr = JsonUtility.FromJson<TranslateResponseArray>(respJson);
@@ -130,8 +120,6 @@ public class Translate : MonoBehaviour
                     var single = JsonUtility.FromJson<TranslateToken>(respJson);
                     if (single != null) tokens.Add(single);
                 }
-
-                // Формируем текст
                 var sb = new StringBuilder();
                 foreach (var t in tokens)
                 {

@@ -11,10 +11,10 @@ public class Settings : MonoBehaviour
 
     [Header("Panels")]
     public TextMeshProUGUI nick;
-    public GameObject loginPanel;       // Панель логина
-    public GameObject registerPanel;    // Панель регистрации
-    public GameObject loginButtonMane;  // Кнопка "Login" в меню
-    public GameObject registerButtonMane; // Кнопка "Register" в меню
+    public GameObject loginPanel; 
+    public GameObject registerPanel; 
+    public GameObject loginButtonMane; 
+    public GameObject registerButtonMane; 
 
     [Header("Login Fields")]
     public TMP_InputField loginUsernameField;
@@ -26,8 +26,8 @@ public class Settings : MonoBehaviour
     public TMP_InputField registerRepeatField;
 
     [Header("Error Messages")]
-    public GameObject errorInputText;    // "Мин. 3 символа, не только цифры"
-    public GameObject errorPasswordText; // "Пароли не совпадают"
+    public GameObject errorInputText;  
+    public GameObject errorPasswordText;
 
     void Start()
     {
@@ -40,7 +40,6 @@ public class Settings : MonoBehaviour
         }
     }
 
-    // === UI Handlers ===
     public void ShowLoginPanel()
     {
         errorInputText.SetActive(false);
@@ -66,7 +65,6 @@ public class Settings : MonoBehaviour
         Application.Quit();
     }
 
-    // Вызывается при нажатии на кнопку внутри панели логина
     public void OnLoginSubmit()
     {
         errorInputText.SetActive(false);
@@ -79,11 +77,8 @@ public class Settings : MonoBehaviour
             return;
         }
 
-        // Запускаем корутину логина
         StartCoroutine(Login(user, pass));
     }
-
-    // Вызывается при нажатии на кнопку внутри панели регистрации
     public void OnRegisterSubmit()
     {
         errorInputText.SetActive(false);
@@ -104,7 +99,6 @@ public class Settings : MonoBehaviour
             return;
         }
 
-        // Запускаем корутину регистрации
         StartCoroutine(Register(user, pass));
     }
 
@@ -113,7 +107,6 @@ public class Settings : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-    // === Coroutines for network ===
     IEnumerator Login(string username, string password)
     {
         string url = $"{baseUrl}/users/login?username={UnityWebRequest.EscapeURL(username)}&password={UnityWebRequest.EscapeURL(password)}";
@@ -127,7 +120,6 @@ public class Settings : MonoBehaviour
                 PlayerPrefs.Save();
                 Debug.Log("Login successful!");
                 nick.text = username;
-                // Здесь можно загрузить следующий уровень или обновить UI
             }
             else
             {
@@ -146,7 +138,6 @@ public class Settings : MonoBehaviour
             if (www.result == UnityWebRequest.Result.Success)
             {
                 Debug.Log("Registration successful!");
-                // Возможно, скрыть панель и показать главное меню
             }
             else
             {
@@ -155,7 +146,6 @@ public class Settings : MonoBehaviour
         }
     }
 
-    // === Helpers ===
     private bool IsValid(string s)
     {
         if (s.Length < 3) return false;
